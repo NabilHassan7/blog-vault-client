@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -13,7 +14,7 @@ const Header = () => {
             {/* data-bs-theme controls the theme of the navbar */}
             <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary mb-4" data-bs-theme="dark">
                 <Container>
-                    <Navbar.Brand href="#home">Blog Vault</Navbar.Brand>
+                    <Navbar.Brand><Link to='/'>Blog Vault</Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">

@@ -1,16 +1,50 @@
 import React from 'react';
+
 // importing from react-bootstrap
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import ListGroup from 'react-bootstrap/ListGroup';
+
+// importing from react icons
+import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaYoutube } from "react-icons/fa";
+import { FaWhatsapp} from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import BrandAds from '../BrandAds/BrandAds';
 
 const RightSideNav = () => {
     return (
-        <ButtonGroup vertical>
-            <Button variant="outline-primary">Login with Google</Button>
-            <Button variant="outline-dark">Login with Github</Button>
-            <Button variant="outline-secondary">Login with facebook</Button>
-            <Button variant="outline-success">Login with twiiter</Button>     
-        </ButtonGroup>
+        <div>
+            {/* login variants */}
+            <ButtonGroup vertical>
+                <Button className=' mb-2' variant="outline-primary"><FaGoogle />Login with Google</Button>
+                <Button className=' mb-2' variant="outline-dark"><FaGithub />Login with Github</Button>
+                <Button className=' mb-2' variant="outline-primary"><FaFacebookF />Login with facebook</Button>
+                <Button className=' mb-2' variant="outline-primary"><FaTwitter />Login with twiiter</Button>     
+            </ButtonGroup>
+            
+            {/* social media links */}
+            <div className='mt-4'>
+                <h5>Find us on: </h5>
+                <ListGroup>
+                    <ListGroup.Item className=' mb-2'><FaFacebookF /> Facebook</ListGroup.Item>
+                    <ListGroup.Item className=' mb-2'><FaTwitter /> Twitter</ListGroup.Item>
+                    <ListGroup.Item className=' mb-2'><FaYoutube /> Youtube</ListGroup.Item>
+                    <ListGroup.Item className=' mb-2'><FaWhatsapp /> Whatsapp</ListGroup.Item>
+                    <ListGroup.Item className=' mb-2'><FaLinkedin /> LinkedIn</ListGroup.Item>
+                </ListGroup>
+            </div>
+
+            {/* advertisement space */}
+            <div className='mt-4'>
+                <h5>Our sponsors: </h5>
+                <BrandAds></BrandAds>
+            </div>
+            
+        </div>
     );
 };
 

@@ -1,14 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // importing from react-bootstrap
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+
+    const {createUser} = useContext(AuthContext);
 
     // Function to prevent reloading of the form
     const handleSubmit = event =>{
         event.preventDefault();
+
+        const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURl.value;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // Auth call to create user
+        createUser(email, password)
+        .then(result =>{
+            const user = result.user;
+            form.reset(); // resets the form
+        })
+        .catch(
+            error => console.error(error)
+        )
     }
 
     return (

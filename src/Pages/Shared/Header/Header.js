@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // importing from react-boostrap
 import Container from 'react-bootstrap/Container';
@@ -7,8 +7,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { Image } from 'react-bootstrap';
+import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
+    // Receiving and destructuring Auth Context
+    const { user } = useContext(AuthContext);
     return (
         <div>
             {/* data-bs-theme controls the theme of the navbar */}
@@ -33,9 +38,16 @@ const Header = () => {
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets">More deets</Nav.Link>
+                            <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
-                            Dank memes
+                                {user?.photoURL ?
+                                    <Image
+                                        style={{ height: '30px' }}
+                                        roundedCircle
+                                        src={user?.photoURL}>
+                                    </Image>
+                                    : <FaUser></FaUser>
+                                }
                             </Nav.Link>
                         </Nav>
                         {/* displaying the category in menu */}

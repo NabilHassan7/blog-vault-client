@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 // importing from react-bootstrap
 import Button from 'react-bootstrap/Button';
@@ -14,13 +14,31 @@ import { FaYoutube } from "react-icons/fa";
 import { FaWhatsapp} from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import BrandAds from '../BrandAds/BrandAds';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const RightSideNav = () => {
+
+    // start of GOOGLE AUTHENTICATION
+    const {providerLogin} = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () =>{
+        providerLogin(googleProvider)
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => console.error(error))
+    }
+    // END OF GOOGLE AUTHENTICATION
+
     return (
         <div>
             {/* login variants */}
             <ButtonGroup vertical>
-                <Button className=' mb-2' variant="outline-primary"><FaGoogle />Login with Google</Button>
+                <Button onClick={handleGoogleSignIn} className=' mb-2' variant="outline-primary"><FaGoogle />Login with Google</Button>
                 <Button className=' mb-2' variant="outline-dark"><FaGithub />Login with Github</Button>
                 <Button className=' mb-2' variant="outline-primary"><FaFacebookF />Login with facebook</Button>
                 <Button className=' mb-2' variant="outline-primary"><FaTwitter />Login with twiiter</Button>     

@@ -8,12 +8,19 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import LeftSideNav from '../LeftSideNav/LeftSideNav';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import { FaUser } from 'react-icons/fa';
 
 const Header = () => {
     // Receiving and destructuring Auth Context
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    // function for google logout
+    const handleLogOut = () =>{
+        logOut()
+        .then(() => {})
+        .catch(error => console.error(error))
+    }
     return (
         <div>
             {/* data-bs-theme controls the theme of the navbar */}
@@ -38,7 +45,20 @@ const Header = () => {
                             </NavDropdown>
                         </Nav>
                         <Nav>
-                            <Nav.Link href="#deets">{user?.displayName}</Nav.Link>
+                            <Nav.Link href="#deets">
+                                {
+                                    user?.uid?
+                                    <>
+                                        <span>{user?.displayName}</span>
+                                        <Button variant="danger" onClick={handleLogOut}>Log out</Button>
+                                    </>
+                                    :
+                                    <>
+                                        <Link to='/login'>Login</Link>
+                                        <Link to='/register'>Register</Link>
+                                    </>
+                                }
+                            </Nav.Link>
                             <Nav.Link eventKey={2} href="#memes">
                                 {user?.photoURL ?
                                     <Image

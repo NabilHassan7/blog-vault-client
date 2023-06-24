@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import {getAuth, onAuthStateChanged, signInWithPopup} from 'firebase/auth';
+import {getAuth, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth';
 import app from '../../firebase/firebase.config';
 
 
@@ -12,6 +12,11 @@ const AuthProvider = ({children}) => {
     // creating login provider for GOOGLE
     const providerLogin = (provider) =>{
         return signInWithPopup(auth, provider);
+    }
+
+    // logout function for GOOGLE
+    const logOut = () =>{
+        return signOut(auth);
     }
 
     // Observing user state change
@@ -27,7 +32,8 @@ const AuthProvider = ({children}) => {
     }, [])
 
     // exporting to context
-    const authInfo = {user, providerLogin};
+    const authInfo = {user, providerLogin, logOut};
+
     return (
         <AuthContext.Provider value={ authInfo }>
             {children}

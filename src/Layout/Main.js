@@ -18,7 +18,8 @@ const Main = () => {
             <Container>
                 <Row>
                     {/* Space for left navbar */}
-                    <Col lg='2'>
+                    {/* hidden on smaller screens */}
+                    <Col lg='2' className='d-none d-lg-block'>
                         <LeftSideNav></LeftSideNav>
                     </Col>
 

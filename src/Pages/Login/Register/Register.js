@@ -13,7 +13,7 @@ const Register = () => {
     // state to check if the terms are accepted
     const [accepted, setAccepted] = useState(false);
 
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUserProfile} = useContext(AuthContext);
 
     // Function to prevent reloading of the form
     const handleSubmit = event =>{
@@ -31,6 +31,7 @@ const Register = () => {
             // const user = result.user; 
             setError(''); // resets error
             form.reset(); // resets the form
+            handleUpdateUserProfile(name, photoURL); // updates user info
         })
         .catch(
             error => {
@@ -38,6 +39,17 @@ const Register = () => {
                 setError(error.message);
             }
         )
+    }
+
+    // function to update the user information
+    const handleUpdateUserProfile = (name, photoURL) =>{
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+        .then(()=>{})
+        .catch(error => console.error(error));
     }
 
     // Function to check if checkbox clicked

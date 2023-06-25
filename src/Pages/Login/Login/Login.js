@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 // importing from react-bootstrap
 import Button from 'react-bootstrap/Button';
@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+    // state to store error
+    const [error, setError] = useState('');
 
     // importing the sign in function call from AuthProvider
     const {signIn} = useContext(AuthContext);
@@ -22,11 +24,15 @@ const Login = () => {
         // function call to log in user
         signIn(email, password)
         .then(result =>{
-            const user = result.user;
+            // const user = result.user; 
             form.reset(); // resets the form
+            setError(''); // cleans error
             navigate('/');
         })
-        .catch(error => console.error(error))
+        .catch(error => {
+            console.error(error);
+            setError(error.message);
+        })
     }
 
     return (
@@ -46,6 +52,9 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
+                <Form.Text className='text-danger'>
+                    {error}
+                </Form.Text>
             </Form>
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 
 // importing from react-bootstrap
 import Button from 'react-bootstrap/Button';
@@ -11,6 +11,8 @@ const Profile = () => {
     const {user} = useContext(AuthContext);
 
     const [name, setName] = useState(user.displayName);
+
+    const photoURLRef = useRef(user.photoURL);
 
     const handleSubmit = event => {
         event.preventDefault();

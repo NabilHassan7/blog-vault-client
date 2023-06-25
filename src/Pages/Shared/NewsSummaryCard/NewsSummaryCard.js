@@ -45,9 +45,9 @@ const NewsSummaryCard = ({news}) => {
                             {/* conditional to check if the news detail is too long or not */}
                             {
                                 details.length > 250 ?
-                                <p>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Read more</Link></p>
+                                <>{details.slice(0, 250) + '...'} <Link to={`/news/${_id}`}>Read more</Link></>
                                 :
-                                <p>{details}</p>
+                                details
                             }
                         </Card.Text>
                     </Card.Body>

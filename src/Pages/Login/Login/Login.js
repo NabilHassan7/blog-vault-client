@@ -13,7 +13,7 @@ const Login = () => {
     const [error, setError] = useState('');
 
     // importing the sign in function call from AuthProvider
-    const {signIn} = useContext(AuthContext);
+    const {signIn, setLoading} = useContext(AuthContext);
     const navigate = useNavigate();
 
     // retrieve location
@@ -44,6 +44,9 @@ const Login = () => {
         .catch(error => {
             console.error(error);
             setError(error.message);
+        })
+        .finally(() => {
+            setLoading(false); // prevents loading if the user is not logged in
         })
     }
 

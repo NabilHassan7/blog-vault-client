@@ -4,7 +4,9 @@ import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+
 import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 const Register = () => {
     // checking for error state
@@ -13,7 +15,7 @@ const Register = () => {
     // state to check if the terms are accepted
     const [accepted, setAccepted] = useState(false);
 
-    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const {createUser, updateUserProfile, verifyEmail} = useContext(AuthContext);
 
     // Function to prevent reloading of the form
     const handleSubmit = event =>{
@@ -32,6 +34,8 @@ const Register = () => {
             setError(''); // resets error
             form.reset(); // resets the form
             handleUpdateUserProfile(name, photoURL); // updates user info
+            handleEmailVerification(); // handles email verification
+            toast.success("Registration complete. Please verify email address.");
         })
         .catch(
             error => {
@@ -49,6 +53,13 @@ const Register = () => {
         }
         updateUserProfile(profile)
         .then(()=>{})
+        .catch(error => console.error(error));
+    }
+
+    // function to handle email verification
+    const handleEmailVerification = () =>{
+        verifyEmail()
+        .then(() => {})
         .catch(error => console.error(error));
     }
 

@@ -7,7 +7,7 @@ const LeftSideNav = () => {
     const [newsCategories, setNewsCategories] = useState([]);
 
     useEffect(() =>{
-        fetch('http://localhost:5000/news-categories')
+        fetch('https://blog-vault-server.netlify.app/.netlify/functions/api/news-categories')
         .then(res => res.json())
         .then(data => setNewsCategories(data));
     },[])

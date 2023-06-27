@@ -14,13 +14,14 @@ const LeftSideNav = () => {
 
     return (
         <div>
-            <h2>All news categories: {newsCategories.length}</h2>
+            <h2>News Categories: </h2>
+            {/* {newsCategories.length} */}
             {/* mapping to show the category list */}
             {/* categories are linked dynamically */}
             <div>
                 {
                    newsCategories.map(newsCategory => <p key={newsCategory.id}>
-                        <Link to={`/category/${newsCategory.id}`}>{newsCategory.name}</Link> 
+                        <Link className=' text-decoration-none' to={`/category/${newsCategory.id}`}>{newsCategory.name}</Link> 
                    </p>) 
                 }
             </div>

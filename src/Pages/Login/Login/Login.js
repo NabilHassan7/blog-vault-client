@@ -52,6 +52,7 @@ const Login = () => {
 
     return (
         <div>
+            <h3 className=' mb-2 fw-bold'>Login</h3>
             <Form onSubmit={handleSubmit}>
             
                 <Form.Group className="mb-3" controlId="formBasicEmail">

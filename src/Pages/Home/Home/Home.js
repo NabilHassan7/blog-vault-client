@@ -7,7 +7,7 @@ const Home = () => {
     const allNews = useLoaderData();
     return (
         <div>
-            <h2>Blog Vault = {allNews.length}</h2>
+            <h2>Blog Vault - <span style={{color: 'red', fontSize: '40px', fontWeight: 'bold'}}>Homepage</span></h2>
             {/* sending news data to other components */}
             {
                 allNews.map(news => <NewsSummaryCard

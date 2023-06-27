@@ -29,8 +29,8 @@ const NewsSummaryCard = ({news}) => {
                             style={{height: '60px'}}
                         ></Image>
                         <div>
-                            <p className=' mb-0'>{author.name}</p>
-                            <p>{author.published_date}</p>
+                            <p className=' mb-1 fw-bold h5'>{author.name}</p>
+                            <p>Published - {author.published_date}</p>
                         </div>
                     </div>
                     <div>
@@ -39,9 +39,9 @@ const NewsSummaryCard = ({news}) => {
                     </div>
                 </Card.Header>
                     <Card.Body>
-                        <Card.Title>{title}</Card.Title>
+                        <Card.Title className=' mb-2 fw-bolder'>{title}</Card.Title>
                         <Card.Img variant='top' src={image_url}/>
-                        <Card.Text>
+                        <Card.Text className=' mt-2'>
                             {/* conditional to check if the news detail is too long or not */}
                             {
                                 details.length > 250 ?
@@ -54,11 +54,11 @@ const NewsSummaryCard = ({news}) => {
                 <Card.Footer className=" d-flex justify-content-between">
                     <div>
                         <FaStar className='text-warning me-2'></FaStar>
-                        <span>{rating?.number}</span>
+                        <span className=' fw-bold'>{rating?.number}</span>
                     </div>
                     <div>
                         <FaEye className=' me-2'></FaEye>
-                        <span>{total_view}</span>
+                        <span className=' fw-bold'>{total_view}</span>
                     </div>
                 </Card.Footer>
             </Card>

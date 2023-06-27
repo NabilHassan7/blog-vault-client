@@ -57,8 +57,8 @@ const Header = () => {
                                 {
                                     user?.uid?
                                     <>
-                                        <span>{user?.displayName}</span>
-                                        <Button variant="danger" onClick={handleLogOut}>Log out</Button>
+                                        <Button variant="danger" className=' me-3' onClick={handleLogOut}>Log out</Button>
+                                        <Button variant='outline-success' style={{background: 'white'}}><span className=' fw-bold' style={{color: 'black'}}>{user?.displayName}</span></Button>
                                     </>
                                     :
                                     <>
@@ -71,6 +71,7 @@ const Header = () => {
                             <Link to='/profile'>
                                 {user?.photoURL ?
                                     <Image
+                                        className=' ps-2'
                                         style={{ height: '30px' }}
                                         roundedCircle
                                         src={user?.photoURL}>

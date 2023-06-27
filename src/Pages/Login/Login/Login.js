@@ -67,9 +67,11 @@ const Login = () => {
                 <Button variant="primary" type="submit">
                     Login
                 </Button>
-                <Form.Text className='text-danger'>
-                    {error}
-                </Form.Text>
+                <p>
+                    <Form.Text className='text-danger fw-bold'>
+                        {error}
+                    </Form.Text>
+                </p>
             </Form>
         </div>
     );
